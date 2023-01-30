@@ -6,8 +6,9 @@ import {
   CssBaseline,
   Typography,
 } from "@material-ui/core";
-import StoreServices from '../../StoreService'
-import { RegisterDataType } from '../../types/Authenticate'
+import { Store } from 'react-notifications-component'
+import StoreServices from '../StoreServices'
+import { RegisterDataType } from '../type/Authenticate'
 
 const RegisterPage = () => {
     const [email, setEmail] = useState('')
@@ -17,21 +18,7 @@ const RegisterPage = () => {
     //REGISTRATION
     const registerFormHandle = (e:FormEvent, data:RegisterDataType) => {
         e.preventDefault();
-        if(data.name.length === 0 || !data.name.match(/^[a-zA-Z\s]+$/)) {
-            Store.addNotification({
-                title: "Name can contain only letters",
-                type: "danger",
-                insert: "top",
-                container: "bottom-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                    duration: 1000,
-                    onScreen: true
-                }
-            })
-        }
-        else if(data.password.length < 5) {
+        if(data.password.length < 5) {
             Store.addNotification({
                 title: "Password must be at least 5 characters",
                 type: "danger",
