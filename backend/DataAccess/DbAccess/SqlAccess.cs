@@ -40,7 +40,13 @@ public class SqlAccess : ISqlAccess
                 {
                     var task = multi.Read<ProjectTask>().Single();
                     task.Project = multi.Read<Project>().Single();
-                    task.UserAssigned = multi.Read<User>().Single();
+                    try
+                    {
+                        task.UserAssigned = multi.Read<User>().Single();
+                    } catch
+                    {
+                        task.UserAssigned = null;
+                    }
                     return task;
                 }
             }

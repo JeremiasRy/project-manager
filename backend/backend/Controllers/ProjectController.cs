@@ -37,7 +37,7 @@ public class ProjectController
         try
         {
             await data.AssignUserToProject(assign.AssignId, assign.UserId);
-            return Results.Ok(new { Assigned = user, To = project});
+            return Results.Ok(new { Assigned = user.Username, To = project.Title});
         } catch (Exception ex)
         {
             return Results.Problem(ex.Message);

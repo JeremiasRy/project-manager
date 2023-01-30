@@ -27,7 +27,10 @@ public class TaskData : ITaskData
         {
             throw new Exception("Ran into a null task");
         }
-
+    }
+    public async Task AssingTaskToUser(int taskId, int userId)
+    {
+        await _sqlAccess.SaveData("INSERT INTO user_task_map(userid, taskid) VALUES(@userId, @taskId)", new { taskId, userId });
     }
     public TaskData(ISqlAccess sqlAccess)
     {
