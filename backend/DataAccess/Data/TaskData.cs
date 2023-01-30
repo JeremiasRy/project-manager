@@ -32,6 +32,17 @@ public class TaskData : ITaskData
     {
         await _sqlAccess.SaveData("INSERT INTO user_task_map(userid, taskid) VALUES(@userId, @taskId)", new { taskId, userId });
     }
+    public async Task InsertTask(ProjectTask task)
+    {
+        if (task.Due_date is not null)
+        {
+            await _sqlAccess.SaveData("INSERT INTO task (title, description, due_date, projectid) VALUES(@title, @description, @due_date, @projectid);", new { task.Title, task.Description, task.Due_date, task.ProjectId });
+        }
+        else
+        {
+            await _sqlAccess.SaveData("INSERT INTO task (title, description, projectid) VALUES(@title, @description, @projectid);", new { task.Title, task.Description, task.ProjectId });
+        }
+    }
     public TaskData(ISqlAccess sqlAccess)
     {
         _sqlAccess = sqlAccess;

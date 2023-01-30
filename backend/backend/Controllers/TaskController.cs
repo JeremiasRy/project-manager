@@ -49,4 +49,16 @@ public class TaskController
             return Results.BadRequest("User or task id is invalid");
         }
     }
+    [HttpPost]
+    public async Task<IResult> InsertTask([FromServices] ITaskData data, [FromBody] ProjectTask newTask)
+    {
+        try
+        {
+            await data.InsertTask(newTask);
+            return Results.Ok(new {newTask.Title, newTask.Description});
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
 }
