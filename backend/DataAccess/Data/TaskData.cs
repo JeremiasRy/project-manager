@@ -3,7 +3,7 @@ using DataAccess.Models;
 
 namespace DataAccess.Data;
 
-public class TaskData
+public class TaskData : ITaskData
 {
     private readonly ISqlAccess _sqlAccess;
     public async Task<IEnumerable<ProjectTask>> GetTasks()

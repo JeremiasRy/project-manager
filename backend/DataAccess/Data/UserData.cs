@@ -3,7 +3,7 @@ using DataAccess.Models;
 
 namespace DataAccess.Data;
 
-public class UserData
+public class UserData : IUserData
 {
     private readonly ISqlAccess _sqlAccess;
     public async Task<IEnumerable<User>> GetUsers()
