@@ -1,16 +1,10 @@
 using DataAccess.Data;
 using DataAccess.DbAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-
 var securityKey = builder.Configuration["Jwt:Key"];
 if (securityKey == null)
 {
@@ -28,6 +22,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidAudience = builder.Configuration["Jwt:Audience"],
     };
 });
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
@@ -41,6 +36,7 @@ builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
 builder.Services.AddSingleton<IProjectData, ProjectData>();
 builder.Services.AddSingleton<ITaskData, TaskData>();
 builder.Services.AddSingleton<IUserData, UserData>();
+
 
 var app = builder.Build();
 
