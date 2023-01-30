@@ -32,6 +32,19 @@ public class TaskController
             return Results.Problem(ex.Message);
         }
     }
+    [HttpPost("complete/{id}")]
+    public async Task<IResult> CompleteTask([FromServices] ITaskData data, [FromRoute] int id)
+    {
+        try
+        {
+            var task = await data.GetTask(id);
+            await data.CompleteTask(id);
+            return Results.Ok($"Completed task {task.Title}");
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
     [HttpPost("assign")]
     public async Task<IResult> AssignTaskToUser([FromServices] ITaskData data, [FromServices] IUserData userCheck, [FromBody] Assign assign)
     {

@@ -26,6 +26,10 @@ public class TaskData : ITaskData
         }
         return result.Where(task => task.UserAssigned.UserId == userId);
     }
+    public async Task CompleteTask(int taskId)
+    {
+        await _sqlAccess.SaveData<dynamic>("UPDATE task SET completed = 'true', completed_at = NOW() WHERE taskid = @taskId", new { taskId });
+    }
     public async Task<ProjectTask> GetTask(int taskId)
     {
         var task = await _sqlAccess.LoadData<ProjectTask, dynamic>("SELECT * FROM task WHERE task.taskId = @taskId", new { taskId });
