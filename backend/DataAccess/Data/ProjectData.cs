@@ -20,6 +20,10 @@ public class ProjectData : IProjectData
     {
         return await _sqlAccess.LoadProject<dynamic>("SELECT * FROM project WHERE projectId = @ProjectId; SELECT * FROM task WHERE task.projectId = @ProjectId; SELECT t1.userId, username FROM \"user\" t1 JOIN project_user_map t2 ON t1.userId = t2.userId WHERE t2.projectId = @ProjectId", new { projectId });
     }
+    public async Task AssignUserToProject(int projectId, int userId)
+    {
+        await _sqlAccess.SaveData("INSERT INTO project_user_map (projectid, userid) VALUES (@projectId, @userId)", new { projectId, userId });
+    }
     public ProjectData(ISqlAccess sqlAccess)
     {
         _sqlAccess = sqlAccess;
