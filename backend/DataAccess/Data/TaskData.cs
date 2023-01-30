@@ -16,6 +16,16 @@ public class TaskData : ITaskData
         }
         return result;
     }
+    public async Task<IEnumerable<ProjectTask>> GetTasks(int userId)
+    {
+        var tasks = await _sqlAccess.LoadData<ProjectTask, dynamic>("SELECT * FROM task", new { });
+        List<ProjectTask> result = new();
+        foreach (var task in tasks)
+        {
+            result.Add(await GetTask((int)task.TaskId));
+        }
+        return result.Where(task => task.UserAssigned.UserId == userId);
+    }
     public async Task<ProjectTask> GetTask(int taskId)
     {
         var task = await _sqlAccess.LoadData<ProjectTask, dynamic>("SELECT * FROM task WHERE task.taskId = @taskId", new { taskId });

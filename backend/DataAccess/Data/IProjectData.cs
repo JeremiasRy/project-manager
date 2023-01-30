@@ -7,6 +7,7 @@ namespace DataAccess.Data
         Task AssignUserToProject(int projectId, int userId);
         Task<Project> GetProjectById(int projectId);
         Task<IEnumerable<Project>> GetProjects();
+        Task<IEnumerable<Project>> GetProjects(int userId);
         Task InsertProject(Project project);
     }
 }

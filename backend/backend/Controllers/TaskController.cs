@@ -20,6 +20,18 @@ public class TaskController
             return Results.Problem(ex.Message);
         }
     }
+    [HttpGet("user/{id}")]
+    public async Task<IResult> GetTasks([FromServices] ITaskData data, [FromRoute] int id)
+    {
+        try
+        {
+            return Results.Ok(await data.GetTasks(id));
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
     [HttpPost("assign")]
     public async Task<IResult> AssignTaskToUser([FromServices] ITaskData data, [FromServices] IUserData userCheck, [FromBody] Assign assign)
     {

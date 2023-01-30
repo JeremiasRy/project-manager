@@ -20,6 +20,18 @@ public class ProjectController
             return Results.Problem(ex.Message);
         }
     }
+    [HttpGet("/user/{id}")]
+    public async Task<IResult> GetProject([FromServices] IProjectData data, [FromRoute] int id)
+    {
+        try
+        {
+            return Results.Ok(await data.GetProjects(id));
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
     [HttpPost("assign/")]
     public async Task<IResult> AssignProjectToUser([FromServices] IProjectData data, [FromServices] IUserData userCheck, [FromBody] Assign assign)
     {
