@@ -32,6 +32,23 @@ public class ProjectController
             return Results.Problem(ex.Message);
         }
     }
+    [HttpPost("complete/{id}")]
+    public async Task<IResult> CompleteProject([FromServices] IProjectData data, [FromRoute] int id)
+    {
+        var project = await data.GetProjectById(id);
+        if (project.Tasks.Any(task => task.Completed == false))
+        {
+            return Results.Problem("Not all tasks are completed");
+        };
+        try
+        {
+            await data.CompleteProject(id);
+            return Results.Ok($"Deleted project: {project.Title}");
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
     [HttpPost("assign/")]
     public async Task<IResult> AssignProjectToUser([FromServices] IProjectData data, [FromServices] IUserData userCheck, [FromBody] Assign assign)
     {

@@ -26,6 +26,10 @@ public class ProjectData : IProjectData
         }
         return result.Where(proj => proj.UsersAssigned.Any(user => user.UserId == userId));
     }
+    public async Task CompleteProject(int projectId)
+    {
+        await _sqlAccess.SaveData<dynamic>("UPDATE project SET completed = 'true', completed_at = NOW() WHERE projectid = @projectId;", new { projectId });
+    }
     public async Task<Project> GetProjectById(int projectId)
     {
         return await _sqlAccess.LoadProject<dynamic>("SELECT * FROM project WHERE projectId = @ProjectId; SELECT * FROM task WHERE task.projectId = @ProjectId; SELECT t1.userId, username FROM \"user\" t1 JOIN project_user_map t2 ON t1.userId = t2.userId WHERE t2.projectId = @ProjectId", new { projectId });
