@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "38d31323-233e-421f-a2eb-558c30840267": {
+      "ProjectGuid": "38d31323-233e-421f-a2eb-558c30840267",
+      "DisplayName": "backend",
+      "ColorIndex": 0
+    },
+    "f4d62142-b3a4-4dd0-9c7c-240e89cf37f9": {
+      "ProjectGuid": "f4d62142-b3a4-4dd0-9c7c-240e89cf37f9",
+      "DisplayName": "DataAccess",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
