@@ -43,4 +43,16 @@ public class ProjectController
             return Results.Problem(ex.Message);
         }
     }
+    [HttpPost]
+    public async Task<IResult> InsertProject([FromServices] IProjectData data, [FromBody] Project newProject)
+    {
+       try
+        {
+            await data.InsertProject(newProject);
+            return Results.Ok(new { newProject.Title, newProject.Description });
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
 }

@@ -24,6 +24,17 @@ public class ProjectData : IProjectData
     {
         await _sqlAccess.SaveData("INSERT INTO project_user_map (projectid, userid) VALUES (@projectId, @userId)", new { projectId, userId });
     }
+    public async Task InsertProject(Project project)
+    {
+        if (project.Due_date is not null)
+        {
+            await _sqlAccess.SaveData("INSERT INTO project (title, description, due_date) VALUES(@title, @description, @due_date)", new { project.Title, project.Description, project.Due_date });
+        }
+        else
+        {
+            await _sqlAccess.SaveData("INSERT INTO project (title, description) VALUES(@title, @description)", new { project.Title, project.Description });
+        }
+    }
     public ProjectData(ISqlAccess sqlAccess)
     {
         _sqlAccess = sqlAccess;
