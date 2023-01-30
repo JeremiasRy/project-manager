@@ -20,7 +20,7 @@ public class ProjectController
             return Results.Problem(ex.Message);
         }
     }
-    [HttpGet("/user/{id}")]
+    [HttpGet("user/{id}")]
     public async Task<IResult> GetProject([FromServices] IProjectData data, [FromRoute] int id)
     {
         try
