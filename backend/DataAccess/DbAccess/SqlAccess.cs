@@ -5,7 +5,7 @@ using Npgsql;
 
 namespace DataAccess.DbAccess;
 
-public class SqlAccess
+public class SqlAccess : ISqlAccess
 {
     private readonly IConfiguration _config;
     public async Task<Project> LoadProject<T>(string query, T parameters, string connectionString = "Default")
