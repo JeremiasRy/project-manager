@@ -8,7 +8,7 @@ export const fetchTaskBasedOnProject = createAsyncThunk(
     'fetchTaskBasedOnProject',
     async (id:number) => {
         try{
-            const res = await axios.get(`https://api.escuelajs.co/api/v1/categories/${id}/products`)
+            const res = await axios.get(`/api/Task/user/${id}`)
             return res.data
         } catch (e){
             console.log(e)
@@ -20,7 +20,7 @@ export const deleteTask = createAsyncThunk(
     'deleteTask',
     async (id:number) => {
         try{
-            const res = await axios.delete(`https://api.escuelajs.co/api/v1/products/${id}`)
+            const res = await axios.delete(`/api/Task/${id}`)
             return res.data
         } catch(e){
             console.log(e)

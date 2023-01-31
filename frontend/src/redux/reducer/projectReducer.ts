@@ -8,7 +8,7 @@ export const fetchProjectBasedOnUser = createAsyncThunk(
     'fetchProjectBasedOnUser',
     async (id:number) => {
         try{
-            const res = await axios.get(`https://api.escuelajs.co/api/v1/categories/${id}/products`)
+            const res = await axios.get(`/api/Project/user/${id}`)
             return res.data
         } catch (e){
             console.log(e)
