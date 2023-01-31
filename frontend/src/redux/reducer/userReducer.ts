@@ -6,7 +6,7 @@ export const authenticateUser = createAsyncThunk(
     'authenticateUser',
     async (token:string|null) => {
         try{
-            const res = await axios.get('https://api.escuelajs.co/api/v1/auth/profile', {
+            const res = await axios.get('https://localhost:7050/', {
             headers: {
                 Authorization : `Bearer ${token}`
             }
