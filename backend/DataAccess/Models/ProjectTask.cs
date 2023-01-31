@@ -15,6 +15,7 @@ public class ProjectTask
     public bool? Completed { get; set; }
     public DateTime? Created_At { get; set; }
     public DateTime? Completed_At { get; set; }
+    public DateTime? Due_date { get; set; }
     public Project? Project { get; set; }
     public User? UserAssigned { get; set; }
 }

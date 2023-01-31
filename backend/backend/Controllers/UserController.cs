@@ -83,7 +83,6 @@ public class UserController : ControllerBase
         {
             return Results.Problem(ex.Message);
         }
-
     }
     private string GenerateToken(string username)
     {
