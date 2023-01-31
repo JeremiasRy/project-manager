@@ -17,10 +17,17 @@ public class SqlAccess : ISqlAccess
             {
                 using var multi = await connection.QueryMultipleAsync(query, parameters);
                 {
-                    var project = multi.Read<Project>().Single();
-                    project.Tasks = multi.Read<ProjectTask>().ToList();
-                    project.UsersAssigned = multi.Read<User>().ToList();
-                    return project;
+                    try
+                    {
+                        var project = multi.Read<Project>().Single();
+                        project.Tasks = multi.Read<ProjectTask>().ToList();
+                        project.UsersAssigned = multi.Read<User>().ToList();
+                        return project;
+                    } catch (Exception ex)
+                    {
+                        throw new ArgumentException("Can't find project check parameters Id");
+                    }
+                    
                 }
             }
         }

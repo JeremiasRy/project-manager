@@ -86,4 +86,17 @@ public class TaskController
             return Results.Problem(ex.Message);
         }
     }
+    [HttpDelete("{id}")]
+    public async Task<IResult> DeleteTask([FromServices] ITaskData data, [FromRoute] int id)
+    {
+        try
+        {
+            var task = await data.GetTask(id);
+            await data.DeleteTask(id);
+            return Results.Ok(task);
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
 }

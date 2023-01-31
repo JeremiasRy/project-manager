@@ -34,6 +34,10 @@ public class UserData : IUserData
     {
         await _sqlAccess.SaveData<dynamic>("INSERT INTO \"user\" (username, password) VALUES(@Username, @Password)", new { user.Username, user.Password });
     }
+    public async Task DeleteUser(int userId)
+    {
+        await _sqlAccess.SaveData<dynamic>("DELETE FROM \"user\" WHERE userid = @userId", new { userId });
+    }
     public UserData(ISqlAccess sqlAccess)
     {
         _sqlAccess = sqlAccess;

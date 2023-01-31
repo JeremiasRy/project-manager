@@ -57,6 +57,10 @@ public class TaskData : ITaskData
             await _sqlAccess.SaveData("INSERT INTO task (title, description, projectid) VALUES(@title, @description, @projectid);", new { task.Title, task.Description, task.ProjectId });
         }
     }
+    public async Task DeleteTask(int taskId)
+    {
+        await _sqlAccess.SaveData<dynamic>("DELETE FROM task WHERE taskid = @taskId", new { taskId });
+    }
     public TaskData(ISqlAccess sqlAccess)
     {
         _sqlAccess = sqlAccess;

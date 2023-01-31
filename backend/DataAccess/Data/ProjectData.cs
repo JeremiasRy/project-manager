@@ -49,6 +49,10 @@ public class ProjectData : IProjectData
             await _sqlAccess.SaveData("INSERT INTO project (title, description) VALUES(@title, @description)", new { project.Title, project.Description });
         }
     }
+    public async Task DeleteProject(int projectId)
+    {
+        await _sqlAccess.SaveData<dynamic>("DELETE FROM project WHERE projectid = @projectId", new { projectId });
+    }
     public ProjectData(ISqlAccess sqlAccess)
     {
         _sqlAccess = sqlAccess;

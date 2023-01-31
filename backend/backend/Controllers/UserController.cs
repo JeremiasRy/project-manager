@@ -84,6 +84,20 @@ public class UserController : ControllerBase
             return Results.Problem(ex.Message);
         }
     }
+    [HttpDelete("{id}")]
+    public async Task<IResult> DeleteUser([FromServices] IUserData data, [FromRoute] int id)
+    {
+        try
+        {
+            var user = await data.GetUser(id);
+            await data.DeleteUser(id);
+            return Results.Ok(user);
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+
+    }
     private string GenerateToken(string username)
     {
         string? key = _config["Jwt:Key"];

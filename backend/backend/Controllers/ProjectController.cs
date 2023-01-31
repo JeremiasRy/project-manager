@@ -86,4 +86,17 @@ public class ProjectController
             return Results.Problem(ex.Message);
         }
     }
+    [HttpDelete("{id}")]
+    public async Task<IResult> DeleteProject([FromServices] IProjectData data, [FromRoute] int id)
+    {
+        try
+        {
+            var project = await data.GetProjectById(id);
+            await data.DeleteProject(id);
+            return Results.Ok(project);
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
 }
