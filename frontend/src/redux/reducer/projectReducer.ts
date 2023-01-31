@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
-import { ProjectProps } from "../../type/Project";
+import { Project, ProjectProps } from "../../type/Project";
 
-const initialState: ProjectProps[] = [];
+const initialState: Project[] = [];
 
 export const fetchProjectBasedOnUser = createAsyncThunk(
     'fetchProjectBasedOnUser',
@@ -20,7 +20,7 @@ export const fetchAllProjects = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get('https://localhost:7050/api/Project')
-            return res.data
+            return res.data.value;
         } catch (e) {
             console.log(e)
         }

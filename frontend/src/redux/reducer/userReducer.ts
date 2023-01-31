@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
-import { UserProps } from "../../type/User";
+import { User, UserProps } from "../../type/User";
 
 export const authenticateUser = createAsyncThunk(
     'authenticateUser',
@@ -17,7 +17,7 @@ export const authenticateUser = createAsyncThunk(
         }
 })
 
-const initialState: UserProps | null =  (()=> {
+const initialState: User | null =  (()=> {
     const data = localStorage.getItem('user');
     if(data) {
         return JSON.parse(data)
