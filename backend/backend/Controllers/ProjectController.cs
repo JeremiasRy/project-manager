@@ -75,7 +75,7 @@ public class ProjectController
         }
     }
     [HttpPost]
-    public async Task<IResult> InsertProject([FromServices] IProjectData data, [FromBody] Project newProject)
+    public async Task<IResult> InsertProject([FromServices] IProjectData data, [FromBody] Update_AddProject newProject)
     {
        try
         {
