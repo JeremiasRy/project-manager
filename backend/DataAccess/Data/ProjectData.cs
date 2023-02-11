@@ -16,7 +16,7 @@ public class ProjectData : IProjectData
         }
         return result;
     }
-    public async Task<IEnumerable<Project>> GetProjects(int userId)
+    public async Task<IEnumerable<Project>> GetProjectsByUserId(int userId)
     {
         List<Project> result = new();
         var projects = await _sqlAccess.LoadData<Project, dynamic>("SELECT * FROM project;", new { });
@@ -24,7 +24,12 @@ public class ProjectData : IProjectData
         {
             result.Add(await GetProjectById((int)project.ProjectId));
         }
-        return result.Where(proj => proj.UsersAssigned.Any(user => user.UserId == userId));
+        var filtered = result.Where(proj => proj.UsersAssigned.Any(user => user.UserId == userId));
+        if (!filtered.Any())
+        {
+            throw new Exception("Didn't find any projects by this user");
+        }
+        return filtered;
     }
     public async Task CompleteProject(int projectId)
     {

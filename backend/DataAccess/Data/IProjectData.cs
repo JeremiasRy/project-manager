@@ -9,7 +9,7 @@ namespace DataAccess.Data
         Task DeleteProject(int projectId);
         Task<Project> GetProjectById(int projectId);
         Task<IEnumerable<Project>> GetProjects();
-        Task<IEnumerable<Project>> GetProjects(int userId);
+        Task<IEnumerable<Project>> GetProjectsByUserId(int userId);
         Task InsertProject(Update_AddProject project);
     }
 }

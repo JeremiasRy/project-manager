@@ -23,7 +23,7 @@ public class SqlAccess : ISqlAccess
                         project.Tasks = multi.Read<ProjectTask>().ToList();
                         project.UsersAssigned = multi.Read<User>().ToList();
                         return project;
-                    } catch (Exception ex)
+                    } catch 
                     {
                         throw new ArgumentException("Can't find project check parameters Id");
                     }

@@ -1,11 +1,14 @@
 import { Action, configureStore, ThunkAction, } from "@reduxjs/toolkit";
+import projectReducer from "./reducers/projectReducer";
 
 export const createStore = () => {
     return configureStore({
-        reducer: {},
+        reducer: {
+            project: projectReducer
+        },
     });
   }
-  const store = createStore();
+export const store = createStore();
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

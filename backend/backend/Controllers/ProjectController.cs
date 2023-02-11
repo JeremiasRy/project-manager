@@ -20,12 +20,23 @@ public class ProjectController
             return Results.Problem(ex.Message);
         }
     }
-    [HttpGet("user/{id}")]
-    public async Task<IResult> GetProject([FromServices] IProjectData data, [FromRoute] int id)
+    [HttpGet("{id}")]
+    public async Task<IResult> GetProjectById([FromServices] IProjectData data, [FromRoute] int id)
     {
         try
         {
-            return Results.Ok(await data.GetProjects(id));
+            return Results.Ok(await data.GetProjectById(id));
+        } catch(Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+    [HttpGet("user/{id}")]
+    public async Task<IResult> GetProjectsByUser([FromServices] IProjectData data, [FromRoute] int id)
+    {
+        try
+        {
+            return Results.Ok(await data.GetProjectsByUserId(id));
         }
         catch (Exception ex)
         {
@@ -69,18 +80,30 @@ public class ProjectController
         {
             await data.AssignUserToProject(assign.AssignId, assign.UserId);
             return Results.Ok(new { Assigned = user.Username, To = project.Title});
-        } catch (Exception ex)
+        } catch
         {
-            return Results.Problem(ex.Message);
+            return Results.Problem("User already assigned");
         }
     }
     [HttpPost]
     public async Task<IResult> InsertProject([FromServices] IProjectData data, [FromBody] Update_AddProject newProject)
     {
-       try
+        try
         {
-            await data.InsertProject(newProject);
-            return Results.Ok(new { newProject.Title, newProject.Description });
+            if (newProject is null)
+            {
+                throw new ArgumentException("No new project to add");
+            } else
+            {
+                var projects = await data.GetProjects();
+                var duplicateCheckEnumerable = projects.Select(project => new { Description = project.Description.ToLower(), Title = project.Title.ToLower() });
+                if (duplicateCheckEnumerable.Any(names => newProject.Title.ToLower() == names.Title && newProject.Description.ToLower() == names.Description))
+                {
+                    return Results.Problem("Project with this title and description already exists");
+                }
+                await data.InsertProject(newProject);
+                return Results.Ok(new { newProject.Title, newProject.Description });
+            }
         } catch (Exception ex)
         {
             return Results.Problem(ex.Message);
