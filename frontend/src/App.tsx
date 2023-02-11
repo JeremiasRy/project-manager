@@ -1,20 +1,21 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHook"
-import { getProjects, getProjectsByUser, getProjectById, assignProjectToUser, addProject } from "./redux/reducers/projectReducer";
-import { Assign } from "./types/assign";
-import { AddProject } from "./types/project";
+import { updateProject } from "./redux/reducers/projectReducer";
+import { EditProject } from "./types/project";
 
 function App() {
   const projects = useAppSelector(state => state.project);
   const dispatch = useAppDispatch();
-  let newProject:AddProject = {
-    title: "this one is from frontend",
-    description: "I hope it works!!!!",
-    due_date: new Date("2023-02-18")
-  }
+
+  const upProj:EditProject = {
+    projectId: 1,
+    title: "This was changed from front",
+    description: "Great hope it works",
+    due_date: new Date("2024-02-08")
+  } 
 
   useEffect(() => {
-    dispatch(addProject(newProject));
+    dispatch(updateProject(upProj))
   }, []);
 
   console.log(projects);

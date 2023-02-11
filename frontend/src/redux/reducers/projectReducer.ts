@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AddProject, Project } from "../../types/project";
+import { EditProject, AddProject, Project } from "../../types/project";
 import axios from "axios";
 import { Assign } from "../../types/assign";
 
@@ -19,12 +19,6 @@ const productReducer = createSlice({
         })
         .addCase(getProjectById.fulfilled, (_, action) => {
             return action.payload;
-        })
-        .addCase(assignProjectToUser.fulfilled, (state, _) => {
-            return state;
-        })
-        .addCase(addProject.fulfilled, (state) => {
-            return state;
         })
     }
 });
@@ -78,14 +72,15 @@ export const getProjectById = createAsyncThunk(
 )
 export const assignProjectToUser = createAsyncThunk(
     "assignProjectToUser",
-    async (assign:Assign) => {
+    async (assign:Assign, thunkAPI) => {
         try {
             let result = await axios.post("https://localhost:7050/api/Project/assign", assign);
             let data = result.data.value;
             if (data.hasOwnProperty("detail")) {
                 throw new Error(data.detail);
             }
-            console.log(data);
+            //Notify succesfully assigned
+            thunkAPI.dispatch(getProjectById(assign.assignId));
         } catch (e:any) {
             console.log(e);
         }
@@ -93,14 +88,47 @@ export const assignProjectToUser = createAsyncThunk(
 )
 export const addProject = createAsyncThunk(
     "addProject",
-    async (newProject:AddProject) => {
+    async (newProject:AddProject, thunkAPI) => {
         try {
             let result = await axios.post("https://localhost:7050/api/Project", newProject);
             let data = result.data.value;
             if (data.hasOwnProperty("detail")) {
                 throw new Error(data.detail);
             }
-            console.log(data);
+            //Notify succesfully added
+            thunkAPI.dispatch(getProjects());
+        } catch (e:any) {
+            console.log(e);
+        }
+    }
+)
+export const deleteProject = createAsyncThunk(
+    "deleteProject",
+    async (id:number, thunkAPI) => {
+        try {
+            let result = await axios.delete(`https://localhost:7050/api/Project/${id}`);
+            let data = result.data.value;
+            if (data.hasOwnProperty("detail")) {
+                throw new Error(data.detail);
+            }
+            //notify succesful delete
+            thunkAPI.dispatch(getProjects());
+        } catch (e:any) {
+            console.log(e);
+        }
+    }
+)
+export const updateProject = createAsyncThunk(
+    "updateProduct",
+    async (upProject:EditProject, thunkAPI) => {
+        try {
+            let result = await axios.put(`https://localhost:7050/api/Project`, upProject);
+            let data = result.data.value;
+            if (data.hasOwnProperty("detail")) {
+                throw new Error(data.detail);
+            }
+            //notify succesful update
+            thunkAPI.dispatch(getProjectById(upProject.projectId));
         } catch (e:any) {
             console.log(e);
         }

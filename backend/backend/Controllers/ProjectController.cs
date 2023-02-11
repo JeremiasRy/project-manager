@@ -62,6 +62,19 @@ public class ProjectController
         }
 
     }
+    [HttpPut]
+    public async Task<IResult> UpdateProject([FromServices] IProjectData data, [FromBody] Update_AddProject upProduct)
+    {
+        try
+        {
+            var result = await data.GetProjectById((int)upProduct.ProjectId);
+            await data.UpdateProject(upProduct);
+            return Results.Ok(result);
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
     [HttpPost("assign/")]
     public async Task<IResult> AssignProjectToUser([FromServices] IProjectData data, [FromServices] IUserData userCheck, [FromBody] Assign assign)
     {
