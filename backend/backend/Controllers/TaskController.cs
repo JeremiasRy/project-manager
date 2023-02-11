@@ -75,7 +75,7 @@ public class TaskController
         }
     }
     [HttpPost]
-    public async Task<IResult> InsertTask([FromServices] ITaskData data, [FromBody] ProjectTask newTask)
+    public async Task<IResult> InsertTask([FromServices] ITaskData data, [FromBody] Update_AddTask newTask)
     {
         try
         {

@@ -43,7 +43,7 @@ public class ProjectController
                 return Results.Problem("Not all tasks are completed");
             };
             await data.CompleteProject(id);
-            return Results.Ok($"Deleted project: {project.Title}");
+            return Results.Ok($"Completed project: {project.Title}");
         }
         catch (Exception ex)
         {

@@ -10,6 +10,6 @@ namespace DataAccess.Data
         Task<ProjectTask> GetTask(int taskId);
         Task<IEnumerable<ProjectTask>> GetTasks();
         Task<IEnumerable<ProjectTask>> GetTasks(int userId);
-        Task InsertTask(ProjectTask task);
+        Task InsertTask(Update_AddTask task);
     }
 }

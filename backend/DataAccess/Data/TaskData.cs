@@ -46,7 +46,7 @@ public class TaskData : ITaskData
     {
         await _sqlAccess.SaveData("INSERT INTO user_task_map(userid, taskid) VALUES(@userId, @taskId)", new { taskId, userId });
     }
-    public async Task InsertTask(ProjectTask task)
+    public async Task InsertTask(Update_AddTask task)
     {
         if (task.Due_date is not null)
         {
