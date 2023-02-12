@@ -10,7 +10,6 @@ namespace backend.Controllers;
 public class ProjectController
 {
     [HttpGet]
-    [Authorize]
     public async Task<IResult> GetProjects([FromServices] IProjectData data)
     {
         try
