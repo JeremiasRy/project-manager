@@ -1,5 +1,6 @@
 ﻿using DataAccess.Data;
 using DataAccess.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
@@ -9,6 +10,7 @@ namespace backend.Controllers;
 public class ProjectController
 {
     [HttpGet]
+    [Authorize]
     public async Task<IResult> GetProjects([FromServices] IProjectData data)
     {
         try

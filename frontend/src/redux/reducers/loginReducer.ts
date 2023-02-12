@@ -1,20 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios";
-import { SignInCredentials } from "../../types/user";
+import { LoggedIn, SignInCredentials } from "../../types/user";
 
-const initialState:string = "";
+const initialState:LoggedIn = {user: null, access_token: null}
 
 const loginReducer = createSlice({
     name: "loginReducer",
     initialState,
     reducers: {
         logout: () => {
-            return "";
+            return {user: null, access_token: null};
         }
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (_, action) => {
-            return `Bearer ${action.payload}`
+            action.payload.access_token = `Bearer ${action.payload.access_token}`
+            return action.payload;
         })
     }
 })
@@ -31,7 +32,7 @@ export const login = createAsyncThunk(
             if (data.hasOwnProperty("detail")) {
                 throw new Error(data.detail);
             }
-            return data.access_token;
+            return data;
             //dispatch getUser notify login
         } catch (e:any) {
             console.log(e);

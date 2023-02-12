@@ -8,4 +8,10 @@ export type User = {
     projects: Omit<Project, "tasks" | "usersAssigned">[];
     tasks: Omit<Task, "project" | "userAssigned">[];
 }
+
 export type SignInCredentials = Omit<User, "userId" | "projects" | "tasks">;
+
+export type LoggedIn = {
+    user:User | null,
+    access_token: string | null
+}

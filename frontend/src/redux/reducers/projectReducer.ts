@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { EditProject, AddProject, Project } from "../../types/project";
 import axios from "axios";
 import { Assign } from "../../types/assign";
+import { login } from "./loginReducer";
+import { useAppSelector } from "../../hooks/reduxHook";
+import { RootState } from "../store";
 
 const initialState: Project[] | Project = [];
 
@@ -27,9 +30,10 @@ export default productReducer.reducer;
 
 export const getProjects = createAsyncThunk(
     "getProjects",
-    async () => {
+    async (_, thunkAPI) => {
         try {
-            let result = await axios.get("https://localhost:7050/api/Project")
+            let state = thunkAPI.getState() as RootState;
+            let result = await axios.get("https://localhost:7050/api/Project", { headers: { Authorization: state.login.access_token } })
             let data = result.data.value
             if (data.hasOwnProperty("detail")) {
                 throw new Error(data.detail);
