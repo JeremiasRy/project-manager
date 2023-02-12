@@ -52,7 +52,7 @@ public class ProjectController
             var project = await data.GetProjectById(id);
             if (project.Tasks.Any(task => task.Completed == false))
             {
-                return Results.Problem("Not all tasks are completed");
+                throw new Exception("Not all tasks are completed");
             };
             await data.CompleteProject(id);
             return Results.Ok($"Completed project: {project.Title}");

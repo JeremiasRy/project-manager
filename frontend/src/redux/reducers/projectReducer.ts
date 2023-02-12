@@ -119,7 +119,7 @@ export const deleteProject = createAsyncThunk(
     }
 )
 export const updateProject = createAsyncThunk(
-    "updateProduct",
+    "updateProject",
     async (upProject:EditProject, thunkAPI) => {
         try {
             let result = await axios.put(`https://localhost:7050/api/Project`, upProject);
@@ -129,6 +129,22 @@ export const updateProject = createAsyncThunk(
             }
             //notify succesful update
             thunkAPI.dispatch(getProjectById(upProject.projectId));
+        } catch (e:any) {
+            console.log(e);
+        } 
+    }
+)
+export const completeProject = createAsyncThunk(
+    "completeProject",
+    async (id:number, thunkAPI) => {
+        try {
+            let result = await axios.post(`https://localhost:7050/api/Project/${id}`);
+            let data = result.data.value;
+            if (data.hasOwnProperty("detail")) {
+                throw new Error(data.detail);
+            }
+            //notify completion
+            thunkAPI.dispatch(getProjectById(id));
         } catch (e:any) {
             console.log(e);
         }

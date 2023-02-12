@@ -20,6 +20,17 @@ public class TaskController
             return Results.Problem(ex.Message);
         }
     }
+    [HttpGet("{id}")]
+    public async Task<IResult> GetTaskById([FromServices] ITaskData data, [FromRoute] int id)
+    {
+        try
+        {
+            return Results.Ok(await data.GetTask(id));
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
     [HttpGet("user/{id}")]
     public async Task<IResult> GetTasks([FromServices] ITaskData data, [FromRoute] int id)
     {
@@ -62,13 +73,13 @@ public class TaskController
             }
             await data.AssingTaskToUser(assign.AssignId, assign.UserId);
             return Results.Ok(new { Assigned = user.Username, To = task.Title });
-        } catch (Exception ex)
+        } catch
         {
-            return Results.BadRequest(ex.Message);
+            return Results.Problem("Task already assigned");
         }
     }
     [HttpPost]
-    public async Task<IResult> InsertTask([FromServices] ITaskData data, [FromBody] Update_AddTask newTask)
+    public async Task<IResult> InsertTask([FromServices] ITaskData data, [FromServices] IProjectData projectData, [FromBody] Update_AddTask newTask)
     {
         try
         {
@@ -76,7 +87,26 @@ public class TaskController
             {
                 throw new ArgumentException("Some fields were not filled correctly");
             }
-
+            //Check for exceptions
+            var result = await projectData.GetProjectById((int)newTask.ProjectId);
+            if (result is null || result.Tasks is null)
+            {
+                throw new Exception("Can't find project");
+            }
+            var duplicateCheckEnumeration = result.Tasks
+                .Select(task =>
+                {
+                    if (task.Description is null || task.Title is null)
+                    {
+                        throw new Exception("You should do some cleaning on the database");
+                    }
+                    return new { Description = task.Description.ToLower(), Title = task.Title.ToLower() };
+                });
+            if (duplicateCheckEnumeration.Any(task => task.Description == newTask.Description.ToLower() && task.Title == newTask.Title.ToLower())) 
+            {
+                throw new ArgumentException("A task with this title and description already exists");
+            }
+            //Proceed with updating
             await data.InsertTask(newTask);
             return Results.Ok(new {newTask.Title, newTask.Description});
         } catch (Exception ex)
