@@ -12,7 +12,10 @@ public class TaskData : ITaskData
         List<ProjectTask> result = new();
         foreach (var task in tasks)
         {
-            result.Add(await GetTask((int)task.TaskId));
+            if (task.TaskId is not null)
+            {
+                result.Add(await GetTask((int)task.TaskId));
+            }
         }
         return result;
     }
@@ -22,7 +25,10 @@ public class TaskData : ITaskData
         List<ProjectTask> result = new();
         foreach (var task in tasks)
         {
-            result.Add(await GetTask((int)task.TaskId));
+            if (task.TaskId is not null)
+            {
+                result.Add(await GetTask((int)task.TaskId));
+            }
         }
         return result.Where(task => task.UserAssigned.UserId == userId);
     }
@@ -56,6 +62,10 @@ public class TaskData : ITaskData
         {
             await _sqlAccess.SaveData("INSERT INTO task (title, description, projectid) VALUES(@title, @description, @projectid);", new { task.Title, task.Description, task.ProjectId });
         }
+    }
+    public async Task UpdateTask(Update_AddTask task)
+    {
+        await _sqlAccess.SaveData("UPDATE task SET title = @title, description = @description, due_date = @due_date WHERE taskid = @taskId", new { task.Title, task.Description, task.Due_date, task.TaskId });
     }
     public async Task DeleteTask(int taskId)
     {

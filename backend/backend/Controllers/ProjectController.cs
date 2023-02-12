@@ -26,7 +26,8 @@ public class ProjectController
         try
         {
             return Results.Ok(await data.GetProjectById(id));
-        } catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             return Results.Problem(ex.Message);
         }
@@ -60,17 +61,20 @@ public class ProjectController
         {
             return Results.Problem(ex.Message);
         }
-
     }
     [HttpPut]
     public async Task<IResult> UpdateProject([FromServices] IProjectData data, [FromBody] Update_AddProject upProduct)
     {
         try
         {
-            var result = await data.GetProjectById((int)upProduct.ProjectId);
+            if (upProduct is null || upProduct.ProjectId is null)
+            {
+                throw new ArgumentException("Null values inside udate object");
+            }
             await data.UpdateProject(upProduct);
-            return Results.Ok(result);
-        } catch (Exception ex)
+            return Results.Ok(await data.GetProjectById((int)upProduct.ProjectId));
+        }
+        catch (Exception ex)
         {
             return Results.Problem(ex.Message);
         }
@@ -92,8 +96,9 @@ public class ProjectController
         try
         {
             await data.AssignUserToProject(assign.AssignId, assign.UserId);
-            return Results.Ok(new { Assigned = user.Username, To = project.Title});
-        } catch
+            return Results.Ok(new { Assigned = user.Username, To = project.Title });
+        }
+        catch
         {
             return Results.Problem("User already assigned");
         }
@@ -103,21 +108,37 @@ public class ProjectController
     {
         try
         {
-            if (newProject is null)
+            if (newProject is null || newProject.Description is null || newProject.Title is null)
             {
                 throw new ArgumentException("No new project to add");
-            } else
+            }
+            else
             {
                 var projects = await data.GetProjects();
-                var duplicateCheckEnumerable = projects.Select(project => new { Description = project.Description.ToLower(), Title = project.Title.ToLower() });
+                if (projects is null)
+                {
+                    throw new Exception("Something went wrong while checking duplicates");
+                }
+                var duplicateCheckEnumerable = projects
+                    .Select(project =>
+                    {
+                        if (project.Description is null || project.Title is null)
+                        {
+                            throw new Exception("You should do some cleaning for the database");
+                        }
+                        return new { Description = project.Description.ToLower(), Title = project.Title.ToLower() };
+                    });
+
                 if (duplicateCheckEnumerable.Any(names => newProject.Title.ToLower() == names.Title && newProject.Description.ToLower() == names.Description))
                 {
                     return Results.Problem("Project with this title and description already exists");
                 }
+
                 await data.InsertProject(newProject);
                 return Results.Ok(new { newProject.Title, newProject.Description });
             }
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             return Results.Problem(ex.Message);
         }
@@ -130,7 +151,8 @@ public class ProjectController
             var project = await data.GetProjectById(id);
             await data.DeleteProject(id);
             return Results.Ok(project);
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             return Results.Problem(ex.Message);
         }

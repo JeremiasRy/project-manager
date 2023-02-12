@@ -12,7 +12,10 @@ public class UserData : IUserData
         List<User> result = new();
         foreach (var user in users)
         {
-            result.Add(await GetUser((int)user.UserId));
+            if (user.UserId is not null)
+            {
+                result.Add(await GetUser((int)user.UserId));
+            }
         }
         return result;
     }

@@ -54,24 +54,17 @@ public class TaskController
             var task = await data.GetTask(assign.AssignId);
             if (user == null)
             {
-                return Results.BadRequest("Can't find user");
+                throw new ArgumentException("Cant find user");
             }
             if (task == null)
             {
-                return Results.BadRequest("Can't find task");
+                throw new ArgumentException("Cant find task");
             }
-            try
-            {
-                await data.AssingTaskToUser(assign.AssignId, assign.UserId);
-                return Results.Ok(new { Assigned = user.Username, To = task.Title });
-            }
-            catch
-            {
-                return Results.BadRequest("Cant assign");
-            }
-        } catch
+            await data.AssingTaskToUser(assign.AssignId, assign.UserId);
+            return Results.Ok(new { Assigned = user.Username, To = task.Title });
+        } catch (Exception ex)
         {
-            return Results.BadRequest("User or task id is invalid");
+            return Results.BadRequest(ex.Message);
         }
     }
     [HttpPost]
@@ -79,12 +72,34 @@ public class TaskController
     {
         try
         {
+            if (newTask is null || newTask.ProjectId == null || newTask.Description == null || newTask.Title == null)
+            {
+                throw new ArgumentException("Some fields were not filled correctly");
+            }
+
             await data.InsertTask(newTask);
             return Results.Ok(new {newTask.Title, newTask.Description});
         } catch (Exception ex)
         {
             return Results.Problem(ex.Message);
         }
+    }
+    [HttpPut]
+    public async Task<IResult> UpdateTask([FromServices] ITaskData data, [FromBody] Update_AddTask upTask)
+    {
+        try
+        {
+            if (upTask is null || upTask.TaskId is null)
+            {
+                throw new ArgumentException("Null values inside the update object");
+            }
+            await data.UpdateTask(upTask);
+            return Results.Ok(await data.GetTask((int)upTask.TaskId));
+        } catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+        
     }
     [HttpDelete("{id}")]
     public async Task<IResult> DeleteTask([FromServices] ITaskData data, [FromRoute] int id)
