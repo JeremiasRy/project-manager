@@ -40,7 +40,7 @@ public class UserController : ControllerBase
         }
     }
     [AllowAnonymous]
-    [HttpPost("/login")]
+    [HttpPost("login")]
     public async Task<IResult> Login([FromServices] IUserData data, [FromBody] SignInCredentials user)
     {
         string? username = user.Username;
@@ -51,7 +51,7 @@ public class UserController : ControllerBase
             var userFromDb = await data.GetUser(username);
             if (userFromDb == null)
             {
-                return Results.Problem($"Couldn't find user {username} from database");
+                return Results.Problem($"Couldn't find user {username}");
             }
             if (_hasher.VerifyHashedPassword(user, userFromDb.Password, password) == PasswordVerificationResult.Success)
             {
@@ -69,7 +69,7 @@ public class UserController : ControllerBase
         }
     }
     [AllowAnonymous]
-    [HttpPost("/register")]
+    [HttpPost("register")]
     public async Task<IResult> Register([FromServices] IUserData data, [FromBody] SignInCredentials user)
     {
         string passwordHash = _hasher.HashPassword(user, user.Password);
