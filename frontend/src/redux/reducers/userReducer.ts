@@ -9,9 +9,17 @@ const userReducer = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(getUsers.fulfilled, (_, action) => {
+            return action.payload;
+        })
+        .addCase(getUser.fulfilled, (_, action) => {
+            return action.payload;
+        })
 
     }
 })
+
+export default userReducer.reducer;
 
 export const getUsers = createAsyncThunk(
     "getUsers",
