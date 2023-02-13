@@ -25,7 +25,6 @@ const saveState = (state:RootState) => {
   }
 }
 
-
 export const createStore = () => {
     return configureStore({
         reducer: {

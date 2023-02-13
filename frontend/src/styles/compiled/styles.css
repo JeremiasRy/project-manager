@@ -1,3 +1,66 @@
+.user-form {
+  margin: auto;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 10px;
+}
 
+.user-form h1 {
+  display: inline-block;
+  text-align: center;
+}
+
+.user-form_text-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-form_buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.user-form input {
+  width: 15vw;
+  height: 2em;
+  font-weight: 700;
+  background-color: #eae2f5;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid black;
+  text-align: center;
+  outline: none;
+  transition: 200ms all ease-in;
+  margin: auto;
+}
+
+.user-form input:focus {
+  height: 2.5em;
+  transition: 200ms all ease-in;
+}
+
+.user-form button {
+  width: 10em;
+  height: 3em;
+  border-radius: 2em;
+  background-color: #eae2f5;
+  transition: 200ms all ease-in;
+}
+
+.user-form button:hover {
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 0 1px 1px black;
+  transition: 200ms all ease-in;
+}
+
+body {
+  background-color: #3f2c4f;
+  color: #eae2f5;
+  font-family: "Roboto";
+}
 
 /*# sourceMappingURL=styles.css.map */

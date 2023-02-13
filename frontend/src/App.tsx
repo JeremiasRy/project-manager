@@ -1,34 +1,22 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "./hooks/reduxHook"
-import { login, logout } from "./redux/reducers/loginReducer";
-import { getProjects, updateProject } from "./redux/reducers/projectReducer";
-import { addTask, assignTask, completeTask, deleteTask, editTask, getTask, getTasks } from "./redux/reducers/taskReducer";
-import { Assign } from "./types/assign";
-import { EditProject } from "./types/project";
-import { AddTask, EditTask } from "./types/task";
-import { SignInCredentials } from "./types/user";
+import { useEffect, useState } from "react";
+import { Button } from "./components/Button";
+import { Input } from "./components/Input";
+import { LoginRegisterForm } from "./components/LoginRegisterForm";
+import { useAppDispatch, useAppSelector } from "./hooks/reduxHook";
+import "./styles/compiled/styles.css";
 
 function App() {
-  const loggedIn = useAppSelector(state => state.login);
-  const projects = useAppSelector(state => state.project);
-  const dispatch = useAppDispatch();
-
-  const credentials:SignInCredentials = {
-    username: "Jeremias",
-    password: "qwerty"
-  } 
+  const logging = useAppSelector(state => state.login);
 
   useEffect(() => {
       //dispatch(login(credentials));
-      dispatch(getProjects());
+      //dispatch(getProjects());
   }, []);
 
-  console.log(projects);
-
-  
 
   return (
     <div className="App">
+      <LoginRegisterForm/>
     </div>
   )
 }

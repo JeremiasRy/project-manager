@@ -1,0 +1,32 @@
+@use "./variables";
+
+@mixin input {
+    width: 15vw;
+    height: 2em;
+    font-weight: 700;
+    background-color: $pop_color;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid black;
+    text-align: center;
+    outline: none;
+    transition: 200ms all ease-in;
+}
+@mixin input-focus {
+    height: 2.5em;
+    transition: 200ms all ease-in;
+}
+@mixin button {
+    width: 10em;
+    height: 3em;
+    border-radius: 2em;
+    background-color: $pop_color;
+    transition: 200ms all ease-in;
+}
+@mixin button-hover {
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 0 1px 1px black;
+    transition: 200ms all ease-in;
+}

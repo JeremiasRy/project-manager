@@ -1,0 +1,8 @@
+@use "./sections/userform.scss";
+@import "./abstractions/variables";
+
+body {
+    background-color: $main_color;
+    color: $pop_color;
+    font-family: 'Roboto';
+}
