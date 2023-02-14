@@ -45,28 +45,34 @@ public class UserController : ControllerBase
     {
         string? username = user.Username;
         string? password = user.Password;
-
-        if (username is not null && password is not null)
+        try
         {
-            var userFromDb = await data.GetUser(username);
-            if (userFromDb == null)
+            if (username is not null && password is not null)
             {
-                return Results.Problem($"Couldn't find user {username}");
-            }
-            if (_hasher.VerifyHashedPassword(user, userFromDb.Password, password) == PasswordVerificationResult.Success)
-            {
-                var token = GenerateToken(username);
-                return Results.Ok(new { Access_token = token, User = userFromDb });
+                var userFromDb = await data.GetUser(username);
+                if (userFromDb == null)
+                {
+                    throw new Exception($"Couldn't find user {username}");
+                }
+                if (_hasher.VerifyHashedPassword(user, userFromDb.Password, password) == PasswordVerificationResult.Success)
+                {
+                    var token = GenerateToken(username);
+                    return Results.Ok(new { Access_token = token, User = userFromDb });
+                }
+                else
+                {
+                    throw new Exception("Incorrect password");
+                }
             }
             else
             {
-                return Results.Problem("Incorrect password");
+                throw new Exception("Invalid information for login check username and password");
             }
-        }
-        else
+        } catch (Exception ex)
         {
-            return Results.Problem("Invalid information for login check username and password");
+            return Results.Problem(ex.Message);
         }
+        
     }
     [AllowAnonymous]
     [HttpPost("register")]

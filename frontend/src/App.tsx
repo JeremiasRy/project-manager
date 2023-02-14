@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import { SideNav } from "./components/SideNav";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useAppSelector } from "./hooks/reduxHook";
+import { Main } from "./routes/Main";
+import { Root } from "./routes/Root";
 import "./styles/compiled/styles.css";
 
 function App() {
@@ -11,10 +13,20 @@ function App() {
       //dispatch(getProjects());
   }, []);
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      children: [{
+        path: "main",
+        element: <Main />
+      }]
+    }
+  ])
+
 
   return (
-    <div className="App">
-    </div>
+      <RouterProvider router={router} />
   )
 }
 
