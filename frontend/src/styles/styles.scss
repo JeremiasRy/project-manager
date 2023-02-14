@@ -1,7 +1,10 @@
 @use "./sections/userform.scss";
+@use "./sections/sidenav.scss";
 @import "./abstractions/variables";
 
 body {
+    margin: 0;
+    padding: 0;
     background-color: $main_color;
     color: $pop_color;
     font-family: 'Roboto';

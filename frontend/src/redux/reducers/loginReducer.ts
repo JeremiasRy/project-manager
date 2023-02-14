@@ -33,7 +33,22 @@ export const login = createAsyncThunk(
                 throw new Error(data.detail);
             }
             return data;
-            //dispatch getUser notify login
+            // notify login
+        } catch (e:any) {
+            console.log(e);
+        }
+    }
+)
+export const register = createAsyncThunk(
+    "register",
+    async (credentials:SignInCredentials, thunkAPI) => {
+        try {
+            let result = await axios.post("https://localhost:7050/api/User/register", credentials)
+            let data = result.data.value;
+            if (data.hasOwnProperty("detail")) {
+                throw new Error(data.detail);
+            }
+            thunkAPI.dispatch(login(credentials));
         } catch (e:any) {
             console.log(e);
         }

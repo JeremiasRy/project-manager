@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import { Button } from "./components/Button";
-import { Input } from "./components/Input";
-import { LoginRegisterForm } from "./components/LoginRegisterForm";
-import { useAppDispatch, useAppSelector } from "./hooks/reduxHook";
+import { useEffect } from "react";
+import { SideNav } from "./components/SideNav";
+import { useAppSelector } from "./hooks/reduxHook";
 import "./styles/compiled/styles.css";
 
 function App() {
@@ -16,7 +14,6 @@ function App() {
 
   return (
     <div className="App">
-      <LoginRegisterForm/>
     </div>
   )
 }

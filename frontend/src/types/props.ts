@@ -9,3 +9,7 @@ export type ButtonProps = {
     class: string,
     onClick: VoidFunction,
 }
+export type NavProps = {
+    link: string,
+    name: string,
+}

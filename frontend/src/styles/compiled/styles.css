@@ -57,7 +57,50 @@
   transition: 200ms all ease-in;
 }
 
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  padding: 0 10px 0 10px;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 15vw;
+  background-color: #c698eb;
+  box-shadow: 0 0 5px 5px #c698eb;
+}
+
+.side-nav h1 {
+  color: black;
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+.side-nav_nav-element {
+  background-color: #3f2c4f;
+  border-radius: 10px;
+  height: 5em;
+  box-shadow: 0 0 1px 1px #3f2c4f;
+  vertical-align: middle;
+  transition: all 200ms ease-in;
+  text-align: center;
+}
+
+.side-nav_nav-element h3 {
+  display: inline-block;
+}
+
+.side-nav_nav-element:hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px #eae2f5;
+  transform: scale(1.05);
+  transition: all 200ms ease-in;
+}
+
 body {
+  margin: 0;
+  padding: 0;
   background-color: #3f2c4f;
   color: #eae2f5;
   font-family: "Roboto";

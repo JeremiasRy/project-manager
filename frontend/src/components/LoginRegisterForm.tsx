@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../hooks/reduxHook";
-import { login } from "../redux/reducers/loginReducer";
+import { login, register } from "../redux/reducers/loginReducer";
 import { SignInCredentials } from "../types/user";
 import { Button } from "./Button";
 import { Input } from "./Input";
@@ -10,30 +10,35 @@ export function LoginRegisterForm() {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
-    const [register, setRegister] = useState(false);
+    const [registerForm, setRegisterForm] = useState(false);
 
     function onSubmit() {
-        if (register && password === passwordConfirm) {
-            //notify a missmatch in password confirmation
-            return;
-        }
         let credentials:SignInCredentials = {
             username: user,
-            password:password
+            password: password
+        }
+        if (registerForm && password === passwordConfirm) {
+            dispatch(register(credentials));
+            setRegisterForm(false);
+            setPassword("");
+            setPasswordConfirm("");
+            return;
+        } else {
+            //inform missmatch in passwords
         }
         dispatch(login(credentials));   
     }
     return (
         <div className="user-form">
-            <h1>{register ? "Register" : "Log in"}</h1>
+            <h1>{registerForm ? "Register" : "Log in"}</h1>
             <div className="user-form_text-fields">
                 <Input name="Username" state={user} setState={setUser} isPassword={false}/>
                 <Input name="Password" state={password} setState={setPassword} isPassword={true}/>
-                {register && <Input name="Confirm password" state={passwordConfirm} setState={setPasswordConfirm} isPassword={true}/>}
+                {registerForm && <Input name="Confirm password" state={passwordConfirm} setState={setPasswordConfirm} isPassword={true}/>}
             </div>
             <div className="user-form_buttons">
-                <Button name={register ? "Register" : "Log in" } class="btn" onClick={onSubmit}/>
-                <Button name={register ? "Log in?" : "Sign up?"} class="btn" onClick={() => setRegister(!register)}/>
+                <Button name={registerForm ? "Register" : "Log in" } class="btn" onClick={onSubmit}/>
+                <Button name={registerForm ? "Log in?" : "Sign up?"} class="btn" onClick={() => setRegisterForm(!registerForm)}/>
             </div>
         </div>
     )
