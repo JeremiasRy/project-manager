@@ -4,10 +4,10 @@ export function SideNav() {
     return (
         <div className="side-nav">
             <h1>Project manager</h1>
-            <NavElement name="Projects" link=""/>
-            <NavElement name="Tasks" link=""/>
-            <NavElement name="Users" link=""/>
-            <NavElement name="Log out" link="" />
+            <NavElement name="Projects" link="projects"/>
+            <NavElement name="Tasks" link="tasks"/>
+            <NavElement name="Users" link="users"/>
+            <NavElement name="Log out" link="/" />
         </div>
     )
 }

@@ -30,3 +30,25 @@
     box-shadow: 0 0 1px 1px black;
     transition: 200ms all ease-in;
 }
+@mixin card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $pop_color;
+    color: $font_color;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 20vw;
+    height: 15vh;
+    border-radius: 10px;
+    border: 1px solid $main_color;
+    box-shadow: 0 0 1px 1px $main_color;
+    transition: all 200ms ease-in;
+}
+@mixin card-hover {
+    cursor: pointer;
+    box-shadow: 0 0 2px 2px $pop_color;
+    transition: all 200ms ease-in;
+    transform: scale(1.02);
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAppDispatch } from "../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { login, register } from "../redux/reducers/loginReducer";
 import { SignInCredentials } from "../types/user";
 import { Button } from "./Button";
@@ -28,6 +28,7 @@ export function LoginRegisterForm() {
         }
         dispatch(login(credentials));   
     }
+
     return (
         <div className="user-form">
             <h1>{registerForm ? "Register" : "Log in"}</h1>

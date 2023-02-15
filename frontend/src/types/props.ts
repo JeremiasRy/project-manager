@@ -1,3 +1,6 @@
+import { Project } from "./project"
+import { Task } from "./task"
+
 export type InputProps = {
     state: string,
     setState: React.Dispatch<React.SetStateAction<string>>,
@@ -12,4 +15,7 @@ export type ButtonProps = {
 export type NavProps = {
     link: string,
     name: string,
+}
+export type CardProps = {
+    item: Project | Task
 }

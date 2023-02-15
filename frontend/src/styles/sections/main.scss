@@ -1,0 +1,31 @@
+@import "../abstractions/mixins";
+@import "../abstractions/variables";
+
+.card {
+    @include card;
+}
+.card p {
+    margin: 0;
+}
+.card h3 {
+    margin: 0;
+}
+.card:hover {
+    @include card-hover;
+}
+.list-view {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 2em;
+    row-gap: 2em;
+}
+.main_outlet-holder {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 20vw;
+    top: 5vh;
+}

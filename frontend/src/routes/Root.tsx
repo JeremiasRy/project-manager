@@ -15,7 +15,7 @@ export function Root() {
     
     return (
         <div className="App">
-            {loggedIn === null ? <LoginRegisterForm/> : <Outlet />}
+            {loggedIn === null || loggedIn.user === null ? <LoginRegisterForm/> : <Outlet />}
         </div>
     )
 }
