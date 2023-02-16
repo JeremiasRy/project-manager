@@ -43,7 +43,7 @@
     height: 15vh;
     border-radius: 10px;
     border: 1px solid $main_color;
-    box-shadow: 0 0 1px 1px $main_color;
+    box-shadow: 0 0 1px 1px black;
     transition: all 200ms ease-in;
 }
 @mixin card-hover {

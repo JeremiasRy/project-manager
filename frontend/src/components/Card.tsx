@@ -1,3 +1,4 @@
+import { Project } from "../types/project";
 import { CardProps } from "../types/props";
 
 export function Card(props:CardProps) {
