@@ -15,7 +15,7 @@ export function NavElement(props:NavProps) {
         navigate(props.link);
     }
     return (
-        <div className="side-nav_nav-element" onClick={handleClick}>
+        <div className="nav-element" onClick={handleClick}>
             <h3>{props.name}</h3>
         </div>
     )

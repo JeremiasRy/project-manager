@@ -22,16 +22,16 @@
     justify-content: center;
 }
 .user-form input {
-    @include input;
+    @include input($pop-color, 15vw);
     margin: auto;
 }
 .user-form input:focus {
     @include input-focus;
 }
 .user-form button {
-    @include button;
+    @include button($pop-color, inherit);
 }
 .user-form button:hover {
-    @include button-hover;
+    @include button-hover(black);
 }
 

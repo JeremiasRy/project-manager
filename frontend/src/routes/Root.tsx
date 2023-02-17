@@ -8,7 +8,7 @@ export function Root() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (loggedIn !== null) {
+        if (loggedIn === null || loggedIn.user === null) {
             navigate("/main");
         }
     }, [loggedIn])

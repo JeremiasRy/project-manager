@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ProjectTaskForm } from "./components/ProjectTaskForm";
 import { useAppSelector } from "./hooks/reduxHook";
+import { Add } from "./routes/Add";
 import { Main } from "./routes/Main";
 import { Projects } from "./routes/Projects";
 import { Root } from "./routes/Root";
@@ -30,6 +32,14 @@ function App() {
           {
             path: "tasks",
             element: <Tasks />
+          },
+          {
+            path: "add",
+            element: <Add />
+          },
+          {
+            path: "add/project",
+            element: <ProjectTaskForm />
           }
         ]
       }]

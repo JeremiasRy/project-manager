@@ -33,9 +33,9 @@ export function LoginRegisterForm() {
         <div className="user-form">
             <h1>{registerForm ? "Register" : "Log in"}</h1>
             <div className="user-form_text-fields">
-                <Input name="Username" state={user} setState={setUser} isPassword={false}/>
-                <Input name="Password" state={password} setState={setPassword} isPassword={true}/>
-                {registerForm && <Input name="Confirm password" state={passwordConfirm} setState={setPasswordConfirm} isPassword={true}/>}
+                <Input name="Username" state={user} setState={setUser} type='text'/>
+                <Input name="Password" state={password} setState={setPassword} type='password'/>
+                {registerForm && <Input name="Confirm password" state={passwordConfirm} setState={setPasswordConfirm} type='password'/>}
             </div>
             <div className="user-form_buttons">
                 <Button name={registerForm ? "Register" : "Log in" } class="btn" onClick={onSubmit}/>

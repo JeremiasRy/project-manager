@@ -1,4 +1,5 @@
 @import "../abstractions/variables";
+@import "../abstractions/mixins";
 
 .side-nav {
     display: flex;
@@ -18,21 +19,12 @@
     text-align: center;
     border-bottom: 2px solid black;
 }
-.side-nav_nav-element {
-    background-color: $main_color;
-    border-radius: 10px;
-    height: 5em;
-    box-shadow: 0 0 1px 1px $main_color;
-    vertical-align: middle;
-    transition: all 200ms ease-in;
-    text-align: center;
+.side-nav .nav-element {
+    @include nav-element($main-color, inherit);
 }
-.side-nav_nav-element h3 {
+.side-nav .nav-element h3 {
     display: inline-block;
 }
-.side-nav_nav-element:hover {
-    cursor: pointer;
-    box-shadow: 0 0 2px 2px $pop_color;
-    transform: scale(1.05);
-    transition: all 200ms ease-in;
+.side-nav .nav-element:hover {
+    @include nav-element-hover($pop-color);
 }

@@ -1,10 +1,26 @@
 @use "./variables";
 
-@mixin input {
-    width: 15vw;
+@mixin nav-element($bg-color, $font-color) {
+    background-color: $bg-color;
+    color: $font-color;
+    border-radius: 10px;
+    height: 5em;
+    box-shadow: 0 0 1px 1px $bg-color;
+    vertical-align: middle;
+    transition: all 200ms ease-in;
+    text-align: center;
+}
+@mixin nav-element-hover($hover-color) {
+    cursor: pointer;
+    box-shadow: 0 0 2px 2px $hover-color;
+    transform: scale(1.05);
+    transition: all 200ms ease-in;
+}
+@mixin input($background-color, $width) {
+    width: $width;
     height: 2em;
     font-weight: 700;
-    background-color: $pop_color;
+    background-color: $background-color;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -17,17 +33,18 @@
     height: 2.5em;
     transition: 200ms all ease-in;
 }
-@mixin button {
+@mixin button($background-color, $font-color) {
     width: 10em;
     height: 3em;
     border-radius: 2em;
-    background-color: $pop_color;
+    background-color: $background-color;
+    color: $font-color;
     transition: 200ms all ease-in;
 }
-@mixin button-hover {
+@mixin button-hover($border-color) {
     cursor: pointer;
     font-weight: 700;
-    box-shadow: 0 0 1px 1px black;
+    box-shadow: 0 0 1px 1px $border-color;
     transition: 200ms all ease-in;
 }
 @mixin card {

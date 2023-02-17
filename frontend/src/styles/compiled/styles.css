@@ -47,6 +47,7 @@
   height: 3em;
   border-radius: 2em;
   background-color: #eae2f5;
+  color: inherit;
   transition: 200ms all ease-in;
 }
 
@@ -77,8 +78,9 @@
   border-bottom: 2px solid black;
 }
 
-.side-nav_nav-element {
+.side-nav .nav-element {
   background-color: #3f2c4f;
+  color: inherit;
   border-radius: 10px;
   height: 5em;
   box-shadow: 0 0 1px 1px #3f2c4f;
@@ -87,11 +89,11 @@
   text-align: center;
 }
 
-.side-nav_nav-element h3 {
+.side-nav .nav-element h3 {
   display: inline-block;
 }
 
-.side-nav_nav-element:hover {
+.side-nav .nav-element:hover {
   cursor: pointer;
   box-shadow: 0 0 2px 2px #eae2f5;
   transform: scale(1.05);
@@ -140,12 +142,112 @@
 }
 
 .main_outlet-holder {
-  text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 75vw;
+  height: fit-content;
   position: absolute;
   left: 20vw;
   top: 5vh;
+}
+
+.main_outlet-holder h1 {
+  text-align: center;
+}
+
+.project-task-form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  justify-content: center;
+  padding: 75px;
+  width: 25vw;
+  height: fit-content;
+  border-radius: 25px;
+  border: 1px solid #c698eb;
+  box-shadow: 0 0 1px 1px #c698eb;
+  background-color: #eae2f5;
+  color: #0c0b0c;
+}
+
+.project-task-form h1 {
+  text-align: center;
+}
+
+.project-task-form h4 {
+  text-align: center;
+}
+
+.project-task-form input {
+  width: 15vw;
+  height: 2em;
+  font-weight: 700;
+  background-color: #eae2f5;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid black;
+  text-align: center;
+  outline: none;
+  transition: 200ms all ease-in;
+  margin: auto;
+}
+
+.project-task-form input:focus {
+  height: 2.5em;
+  transition: 200ms all ease-in;
+}
+
+.project-task-form .btn {
+  margin: auto;
+  margin-top: 25px;
+  width: 10em;
+  height: 3em;
+  border-radius: 2em;
+  background-color: green;
+  color: #eae2f5;
+  transition: 200ms all ease-in;
+}
+
+.project-task-form .btn:hover {
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 0 1px 1px rgb(4, 37, 4);
+  transition: 200ms all ease-in;
+}
+
+.project-task-form textarea {
+  width: 20vw;
+  margin: auto;
+  margin-top: 75px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid black;
+}
+
+.add-routes-holder .nav-element {
+  background-color: #eae2f5;
+  color: #3f2c4f;
+  border-radius: 10px;
+  height: 5em;
+  box-shadow: 0 0 1px 1px #eae2f5;
+  vertical-align: middle;
+  transition: all 200ms ease-in;
+  text-align: center;
+}
+
+.add-routes-holder .nav-element h3 {
+  display: inline-block;
+}
+
+.add-routes-holder .nav-element:hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px black;
+  transform: scale(1.05);
+  transition: all 200ms ease-in;
 }
 
 body {

@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getProjects } from "../redux/reducers/projectReducer";
 
 export function Main() {
-    
     return (
         <>
         <div className="main">
@@ -15,7 +14,6 @@ export function Main() {
                 <Outlet />
             </div>
         </div>
-        
         </>
     )
 }
