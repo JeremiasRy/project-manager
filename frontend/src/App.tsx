@@ -39,7 +39,11 @@ function App() {
           },
           {
             path: "add/project",
-            element: <ProjectTaskForm />
+            element: <ProjectTaskForm isProject={true}/>
+          }, 
+          {
+            path: "add/task",
+            element: <ProjectTaskForm isProject={false}/>
           }
         ]
       }]

@@ -87,6 +87,11 @@
     border-bottom: 3px solid black;
 }
 
+.add-routes-holder {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
 .add-routes-holder .nav-element {
     @include nav-element($pop-color, $main_color);
 }

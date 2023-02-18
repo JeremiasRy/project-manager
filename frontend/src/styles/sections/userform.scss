@@ -29,7 +29,7 @@
     @include input-focus;
 }
 .user-form button {
-    @include button($pop-color, inherit);
+    @include button($pop-color, $font-color);
 }
 .user-form button:hover {
     @include button-hover(black);

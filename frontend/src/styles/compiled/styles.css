@@ -47,7 +47,7 @@
   height: 3em;
   border-radius: 2em;
   background-color: #eae2f5;
-  color: inherit;
+  color: #0c0b0c;
   transition: 200ms all ease-in;
 }
 
@@ -226,6 +226,12 @@
   border-left: none;
   border-right: none;
   border-bottom: 3px solid black;
+}
+
+.add-routes-holder {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
 }
 
 .add-routes-holder .nav-element {

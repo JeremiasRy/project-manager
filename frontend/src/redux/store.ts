@@ -3,6 +3,7 @@ import { LoggedIn } from "../types/user";
 import loginReducer from "./reducers/loginReducer";
 import projectReducer from "./reducers/projectReducer";
 import taskReducer from "./reducers/taskReducer";
+import userReducer from "./reducers/userReducer";
 
 let preLoggedIn:LoggedIn = {user: null, access_token: null}
 
@@ -30,7 +31,8 @@ export const createStore = () => {
         reducer: {
             project: projectReducer,
             task: taskReducer,
-            login: loginReducer
+            login: loginReducer,
+            user: userReducer
         }, 
         preloadedState: preLoadedState
     });

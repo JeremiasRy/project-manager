@@ -49,11 +49,16 @@ public class ProjectData : IProjectData
     }
     public async Task InsertProject(Update_AddProject project)
     {
-        if (project.Due_date is not null)
+        if (project.Due_date is not null && project.Start_date is not null)
         {
-            await _sqlAccess.SaveData("INSERT INTO project (title, description, due_date) VALUES(@title, @description, @due_date)", new { project.Title, project.Description, project.Due_date });
-        }
-        else
+            await _sqlAccess.SaveData("INSERT INTO project (title, description, due_date, start_date) VALUES(@title, @description, @due_date, @start_date)", new { project.Title, project.Description, project.Due_date, project.Start_date });
+        } else if (project.Start_date is not null && project.Due_date is null)
+        {
+            await _sqlAccess.SaveData("INSERT INTO project (title, description, start_date) VALUES(@title, @description, @start_date)", new { project.Title, project.Description, project.Start_date });
+        } else if (project.Due_date is not null && project.Start_date is null)
+        {
+            await _sqlAccess.SaveData("INSERT INTO project (title, description, due_date, start_date) VALUES(@title, @description, @due_date)", new { project.Title, project.Description, project.Due_date, });
+        } else
         {
             await _sqlAccess.SaveData("INSERT INTO project (title, description) VALUES(@title, @description)", new { project.Title, project.Description });
         }

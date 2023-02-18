@@ -5,4 +5,5 @@ public class Update_AddProject
     public string? Title { get; set; }
     public string? Description { get; set; }
     public DateTime? Due_date { get; set; }
+    public DateTime? Start_date { get; set; }
 }

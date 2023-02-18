@@ -7,7 +7,11 @@ const initialState: User[] | User = [];
 const userReducer = createSlice({
     name: "userReducer",
     initialState,
-    reducers: {},
+    reducers: {
+        filterOutUser(state, action:{payload:number}) {
+            return state.filter(user => user.userId !== action.payload)
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getUsers.fulfilled, (_, action) => {
             return action.payload;
@@ -20,6 +24,7 @@ const userReducer = createSlice({
 })
 
 export default userReducer.reducer;
+export const { filterOutUser } = userReducer.actions;
 
 export const getUsers = createAsyncThunk(
     "getUsers",

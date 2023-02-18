@@ -54,11 +54,16 @@ public class TaskData : ITaskData
     }
     public async Task InsertTask(Update_AddTask task)
     {
-        if (task.Due_date is not null)
+        if (task.Due_date is not null && task.Start_date is not null)
+        {
+            await _sqlAccess.SaveData("INSERT INTO task (title, description, due_date, start_date, projectid) VALUES(@title, @description, @due_date, @start_Date, @projectid);", new { task.Title, task.Description, task.Due_date, task.Start_date, task.ProjectId });
+        } else if (task.Due_date is null && task.Start_date is not null)
+        {
+            await _sqlAccess.SaveData("INSERT INTO task (title, description, start_date, projectid) VALUES(@title, @description, @start_Date, @projectid);", new { task.Title, task.Description, task.Start_date, task.ProjectId });
+        } else if (task.Due_date is not null && task.Start_date is null)
         {
             await _sqlAccess.SaveData("INSERT INTO task (title, description, due_date, projectid) VALUES(@title, @description, @due_date, @projectid);", new { task.Title, task.Description, task.Due_date, task.ProjectId });
-        }
-        else
+        } else
         {
             await _sqlAccess.SaveData("INSERT INTO task (title, description, projectid) VALUES(@title, @description, @projectid);", new { task.Title, task.Description, task.ProjectId });
         }
