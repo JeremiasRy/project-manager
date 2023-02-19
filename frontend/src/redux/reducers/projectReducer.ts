@@ -99,7 +99,13 @@ export const addProject = createAsyncThunk(
             if (data.hasOwnProperty("detail")) {
                 throw new Error(data.detail);
             }
+            console.log(data);
             //Notify succesfully added
+            if (newProject.usersIds !== null) {
+                newProject.usersIds.forEach(async id => {
+                    await axios.post("https://localhost:7050/api/Project/assign", {userId: id, assignId: data.projectId});
+                })
+            }
             thunkAPI.dispatch(getProjects());
         } catch (e:any) {
             console.log(e);

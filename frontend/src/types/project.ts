@@ -12,6 +12,7 @@ export type Project = {
     due_date: Date | null;
     tasks: Omit<Task, "project" | "userAssigned">[];
     usersAssigned: Omit<User, "password" | "projects" | "tasks">[];
+    usersIds: number[] | null;
 }
-export type EditProject = Omit<Project, "completed" | "created_at" | "completed_at" | "tasks" | "usersAssigned">;
-export type AddProject = Omit<EditProject, "projectId">;
+export type EditProject = Omit<Project, "completed" | "created_at" | "completed_at" | "tasks" | "usersAssigned" | "usersIds">;
+export type AddProject = Omit<Project, "projectId" | "completed" | "created_at" | "completed_at" | "tasks" | "usersAssigned" >;

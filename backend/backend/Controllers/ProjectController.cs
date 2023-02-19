@@ -136,7 +136,10 @@ public class ProjectController
                 }
 
                 await data.InsertProject(newProject);
-                return Results.Ok(new { newProject.Title, newProject.Description });
+                projects = await data.GetProjects();
+                var insertedProjectId = projects.Where(proj => proj.Title == newProject.Title && proj.Description == newProject.Description).FirstOrDefault().ProjectId;
+                
+                return Results.Ok(new { ProjectId = insertedProjectId, newProject.Title, newProject.Description });
             }
         }
         catch (Exception ex)

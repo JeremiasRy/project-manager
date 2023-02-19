@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { LoginRegisterForm } from "../components/LoginRegisterForm";
 import { useAppSelector } from "../hooks/reduxHook"
 import { useEffect } from "react";
+import { SideNav } from "../components/SideNav";
 
 export function Root() {
     const loggedIn = useAppSelector(state => state.login);

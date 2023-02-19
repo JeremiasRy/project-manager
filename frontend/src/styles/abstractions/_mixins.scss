@@ -69,3 +69,10 @@
     transition: all 200ms ease-in;
     transform: scale(1.02);
 }
+@mixin flex($flex-dirrection, $row-gap: 0px, $column-gap: 0px, $justify-content: default) {
+    display: flex;
+    flex-direction: $flex-dirrection;
+    row-gap: $row-gap;
+    column-gap: $column-gap;
+    justify-content: $justify-content;
+}

@@ -1,18 +1,22 @@
 @import "../abstractions/variables";
 @import "../abstractions/mixins";
 
-.side-nav {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    padding: 0 10px 0 10px;
+.side-nav-wrapper {
+    z-index: 1;
     position: sticky;
-    top: 0px;
-    left: 0px;
+    top: 0;
     height: 100vh;
     width: 15vw;
     background-color: $variation;
     box-shadow: 0 0 1px 1px $variation;
+    margin: 0;
+}
+:host(.side-nav-wrapper) {
+    display: block;
+}
+.side-nav {
+    @include flex(column, 15px);
+    padding: 0 10px 0 10px;
 }
 .side-nav h1 {
     color: black;

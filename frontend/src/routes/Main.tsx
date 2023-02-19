@@ -8,11 +8,9 @@ import { getProjects } from "../redux/reducers/projectReducer";
 export function Main() {
     return (
         <>
-        <div className="main">
-            <SideNav />
-            <div className="main_outlet-holder">
-                <Outlet />
-            </div>
+        <SideNav />
+        <div className="main_outlet-holder">
+            <Outlet />
         </div>
         </>
     )

@@ -1,12 +1,15 @@
-@use "./sections/userform.scss";
-@use "./sections/sidenav.scss";
+@use "./sections/header.scss";
 @use "./sections/main.scss";
 @import "./abstractions/variables";
 
-body {
+html, body {
     margin: 0;
-    padding: 0;
+}
+body {
     background-color: $main_color;
     color: $pop_color;
     font-family: 'Roboto';
+}
+.App {
+    height: fit-content;
 }

@@ -1,0 +1,15 @@
+@import "../abstractions/mixins";
+@import "../abstractions/variables";
+
+.add-routes-holder {
+    @include flex(column, 15px);
+}
+.add-routes-holder .nav-element {
+    @include nav-element($pop-color, $main_color);
+}
+.add-routes-holder .nav-element h3 {
+    display: inline-block;
+}
+.add-routes-holder .nav-element:hover {
+    @include nav-element-hover(black);
+}
