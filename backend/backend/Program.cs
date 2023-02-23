@@ -44,10 +44,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
-builder.Services.AddSingleton<IProjectData, ProjectData>();
-builder.Services.AddSingleton<ITaskData, TaskData>();
-builder.Services.AddSingleton<IUserData, UserData>();
+builder.Services.AddScoped<ISqlAccess, SqlAccess>();
+builder.Services.AddScoped<IProjectData, ProjectData>();
+builder.Services.AddScoped<ITaskData, TaskData>();
+builder.Services.AddScoped<IUserData, UserData>();
 
 
 var app = builder.Build();

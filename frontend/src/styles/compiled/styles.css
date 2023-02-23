@@ -290,6 +290,16 @@
   transition: 200ms all ease-in;
 }
 
+.project-holder {
+  margin: 5% 5%;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px #c698eb;
+  height: 90vh;
+  width: 70vw;
+  background-color: #eae2f5;
+  color: #3f2c4f;
+}
+
 .App {
   display: flex;
   flex-direction: row;

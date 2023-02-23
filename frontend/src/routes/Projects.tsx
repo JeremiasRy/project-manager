@@ -11,8 +11,6 @@ export function Projects() {
         dispatch(getProjects());
     }, []);
 
-    console.log(projects);
-
     return (
         <>
             <h1>All projects</h1>

@@ -13,23 +13,24 @@ public class SqlAccess : ISqlAccess
         string? connectionS = _config.GetConnectionString(connectionString);
         if (connectionS is not null)
         {
+            Project project;
             using var connection = NpgsqlDataSource.Create(connectionS).CreateConnection();
             {
                 using var multi = await connection.QueryMultipleAsync(query, parameters);
                 {
                     try
                     {
-                        var project = multi.Read<Project>().Single();
+                        project = multi.Read<Project>().Single();
                         project.Tasks = multi.Read<ProjectTask>().ToList();
                         project.UsersAssigned = multi.Read<User>().ToList();
-                        return project;
+       
                     } catch 
                     {
                         throw new ArgumentException("Can't find project check parameters Id");
                     }
-                    
                 }
             }
+            return project;
         }
         else
         {
@@ -41,11 +42,12 @@ public class SqlAccess : ISqlAccess
         string? connectionS = _config.GetConnectionString(connectionString);
         if (connectionS is not null)
         {
+            ProjectTask task;
             using var connection = NpgsqlDataSource.Create(connectionS).CreateConnection();
             {
                 using var multi = await connection.QueryMultipleAsync(query, parameters);
-                {
-                    var task = multi.Read<ProjectTask>().Single();
+                { 
+                    task = multi.Read<ProjectTask>().Single();
                     task.Project = multi.Read<Project>().Single();
                     try
                     {
@@ -54,9 +56,9 @@ public class SqlAccess : ISqlAccess
                     {
                         task.UserAssigned = null;
                     }
-                    return task;
                 }
             }
+            return task;
         }
         else
         {
@@ -69,16 +71,18 @@ public class SqlAccess : ISqlAccess
 
         if (connectionS is not null)
         {
+            User user;
             using var connection = NpgsqlDataSource.Create(connectionS).CreateConnection();
             {
+                
                 using var multi = await connection.QueryMultipleAsync(query, parameters);
                 {
-                    var user = multi.Read<User>().Single();
+                    user = multi.Read<User>().Single();
                     user.Tasks = multi.Read<ProjectTask>().ToList();
                     user.Projects = multi.Read<Project>().ToList();
-                    return user;
                 }
             }
+            return user;
         }
         else
         {
@@ -90,10 +94,12 @@ public class SqlAccess : ISqlAccess
         string? connectionS = _config.GetConnectionString(connectionString);
         if (connectionS is not null)
         {
+            IEnumerable<T> data;
             using var connection = NpgsqlDataSource.Create(connectionS).CreateConnection();
             {
-                return await connection.QueryAsync<T>(query, parameters);
+                data = await connection.QueryAsync<T>(query, parameters);
             }
+            return data;
         }
         else
         {

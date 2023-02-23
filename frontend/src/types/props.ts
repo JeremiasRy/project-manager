@@ -17,5 +17,6 @@ export type NavProps = {
     name: string,
 }
 export type CardProps = {
-    item: Project | Task
+    item: Project | Task,
+    link: "task" | "project"
 }
