@@ -68,7 +68,7 @@ export const getProjectById = createAsyncThunk(
             if (data.hasOwnProperty("detail")) {
                 throw new Error(data.detail);
             }
-            return data;
+            return [data];
         } catch (e:any) {
             console.log(e);
         }

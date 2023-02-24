@@ -4,6 +4,12 @@
 .card {
     @include card;
 }
+.complete {
+    background-color: rgb(73, 138, 89);
+}
+.not-complete {
+    background-color: $variation;
+}
 .card p {
     margin: 0;
 }

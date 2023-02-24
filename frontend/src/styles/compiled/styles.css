@@ -97,6 +97,14 @@
   transition: all 200ms ease-in;
 }
 
+.complete {
+  background-color: rgb(73, 138, 89);
+}
+
+.not-complete {
+  background-color: #c698eb;
+}
+
 .card p {
   margin: 0;
 }
@@ -298,6 +306,47 @@
   width: 70vw;
   background-color: #eae2f5;
   color: #3f2c4f;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  row-gap: 0px;
+  column-gap: 10px;
+  justify-content: default;
+  padding-left: 7vw;
+}
+
+.left-column p {
+  padding-left: 1em;
+  font-size: large;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  column-gap: 0px;
+  justify-content: default;
+  width: 25%;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  column-gap: 0px;
+  justify-content: default;
+  width: 75%;
+}
+
+.right-column_tasks {
+  display: flex;
+  flex-direction: row;
+  row-gap: 10px;
+  column-gap: 10px;
+  justify-content: default;
+  flex-wrap: wrap;
 }
 
 .App {

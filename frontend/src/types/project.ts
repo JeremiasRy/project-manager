@@ -7,7 +7,7 @@ export type Project = {
     description: string;
     completed: boolean;
     created_at: Date;
-    start_date: Date | null;
+    start_date: Date;
     completed_at: Date | null;
     due_date: Date | null;
     tasks: Omit<Task, "project" | "userAssigned">[];
