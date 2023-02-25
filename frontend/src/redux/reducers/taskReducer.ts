@@ -11,7 +11,8 @@ const taskReducer = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getTasks.fulfilled, (_, action) => {
+        builder
+        .addCase(getTasks.fulfilled, (_, action) => {
             return action.payload;
         })
         .addCase(getTask.fulfilled, (_, action) => {
@@ -46,7 +47,7 @@ export const getTask = createAsyncThunk(
             if (data.hasOwnProperty("detail")) {
                 throw new Error(data.detail)
             }
-            return data;
+            return [data];
         } catch(e:any) {
             console.log(e);
         }

@@ -7,7 +7,7 @@ import { AddProject } from '../types/project';
 import { AddTask } from '../types/task';
 import { User } from '../types/user';
 import { Button } from './Button';
-import {Input} from './Input'
+import { Input } from './Input'
 
 export function ProjectTaskForm(props: {isProject:boolean}) {
     const users = useAppSelector(state => state.user);

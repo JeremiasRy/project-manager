@@ -304,7 +304,7 @@
   box-shadow: 0 0 2px 2px #c698eb;
   height: 90vh;
   width: 70vw;
-  background-color: #eae2f5;
+  background-color: #ead5f3;
   color: #3f2c4f;
 }
 
@@ -328,7 +328,7 @@
   row-gap: 10px;
   column-gap: 0px;
   justify-content: default;
-  width: 25%;
+  flex: 50%;
 }
 
 .right-column {
@@ -337,7 +337,7 @@
   row-gap: 5px;
   column-gap: 0px;
   justify-content: default;
-  width: 75%;
+  flex: 50%;
 }
 
 .right-column_tasks {
@@ -347,6 +347,94 @@
   column-gap: 10px;
   justify-content: default;
   flex-wrap: wrap;
+}
+
+.task-holder {
+  margin: 5% 5%;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px #c698eb;
+  height: 90vh;
+  width: 70vw;
+  background-color: #ead5f3;
+  color: #3f2c4f;
+}
+
+.task-holder .select-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  column-gap: 0px;
+  justify-content: center;
+}
+
+.task-holder select {
+  width: 15vw;
+  height: 2em;
+  font-weight: 700;
+  background-color: #ead5f3;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid black;
+  text-align: center;
+  outline: none;
+  transition: 200ms all ease-in;
+}
+
+.task-holder select:focus {
+  height: 2.5em;
+  transition: 200ms all ease-in;
+}
+
+.task-holder select:hover {
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 0 1px 1px black;
+  transition: 200ms all ease-in;
+}
+
+.task-holder .btn {
+  width: 10em;
+  height: 3em;
+  border-radius: 2em;
+  background-color: rgb(115, 241, 115);
+  color: #3f2c4f;
+  transition: 200ms all ease-in;
+  width: 50%;
+}
+
+.task-holder .btn:hover {
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 0 1px 1px black;
+  transition: 200ms all ease-in;
+}
+
+.task-holder .info {
+  display: flex;
+  flex-direction: row;
+  row-gap: 0px;
+  column-gap: 0px;
+  justify-content: default;
+}
+
+.task-holder__left-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  column-gap: 0px;
+  justify-content: default;
+  flex: 50%;
+  padding-left: 10em;
+}
+
+.task-holder__right-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  column-gap: 0px;
+  justify-content: default;
+  flex: 50%;
 }
 
 .App {
@@ -365,7 +453,7 @@
   height: fit-content;
 }
 
-.main_outlet-holder h1 {
+.main_outlet-holder h1, h2 {
   text-align: center;
 }
 

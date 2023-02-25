@@ -7,7 +7,7 @@
     box-shadow: 0 0 2px 2px $variation;
     height: 90vh;
     width: 70vw;
-    background-color: $pop-color;
+    background-color: $mild_pop;
     color: $main_color;
 }
 .details {
@@ -20,11 +20,11 @@
 }
 .left-column {
     @include flex(column, 10px);
-    width: 25%;
+    flex: 50%;
 }
 .right-column {
     @include flex(column, 5px);
-    width: 75%;
+    flex: 50%;
 }
 .right-column_tasks {
     @include flex(row, 10px, 10px);

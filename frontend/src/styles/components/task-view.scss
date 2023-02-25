@@ -1,0 +1,43 @@
+@import "../abstractions/mixins";
+@import "../abstractions/variables";
+
+.task-holder {
+    margin: 5% 5%;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px $variation;
+    height: 90vh;
+    width: 70vw;
+    background-color: $mild_pop;
+    color: $main_color;
+}
+.task-holder .select-form {
+    @include flex(column, 5px, 0px, center)
+}
+.task-holder select {
+    @include input($mild_pop, 15vw);
+}
+.task-holder select:focus {
+    @include input-focus;
+}
+.task-holder select:hover {
+    @include button-hover(black);
+}
+.task-holder .btn {
+    @include button(rgb(115, 241, 115), $main-color);
+    width: 50%;
+}
+.task-holder .btn:hover {
+    @include button-hover(black);
+}
+.task-holder .info {
+    @include flex(row)
+}
+.task-holder__left-column {
+    @include flex(column, 10px);
+    flex: 50%;
+    padding-left: 10em;
+}
+.task-holder__right-column {
+    @include flex(column, 10px);
+    flex: 50%;
+}

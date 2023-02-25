@@ -3,6 +3,7 @@
 @use "../components/project-task-form.scss";
 @use "../components/userform.scss";
 @use "../components/project-page.scss";
+@use "../components/task-view.scss";
 @import "../abstractions/mixins";
 @import "../abstractions/variables";
 
@@ -16,6 +17,6 @@
     width: 75vw;
     height: fit-content;
 }
-.main_outlet-holder h1 {
+.main_outlet-holder h1, h2 {
     text-align: center;
 }

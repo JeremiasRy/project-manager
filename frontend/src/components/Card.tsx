@@ -16,7 +16,6 @@ export function Card(props:CardProps) {
     return (
         <div className={`card ${props.item.completed ? "complete" : "not-complete" }`} onClick={() => navigate(itemLink())}>
             <h3>{props.item.title}</h3>
-            <p>{props.item.description}</p>
             <p>{props.item.completed ? "Completed" : "Not complete" }</p>
         </div>
     )

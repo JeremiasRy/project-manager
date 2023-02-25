@@ -7,7 +7,7 @@ import { Main } from "./routes/Main";
 import { ProjectView } from "./routes/ProjectView";
 import { Projects } from "./routes/Projects";
 import { Root } from "./routes/Root";
-import { Task } from "./routes/Task";
+import { TaskView } from "./routes/TaskView";
 import { Tasks } from "./routes/Tasks";
 import "./styles/compiled/styles.css";
 
@@ -43,7 +43,7 @@ function App() {
           },
           {
             path: "task/:id",
-            element: <Task />
+            element: <TaskView />
           },
           {
             path: "add/task",
