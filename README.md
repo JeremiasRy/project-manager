@@ -20,5 +20,13 @@ When creating a project you assign a team for it and then individually assing a 
 I didn't use enough generics on the backend which made a lot of the code repetitive. <br/>
 Also my REST api knowledge wasn't on point when designing this so it doesn't fully commit on those guidelines
 
+## Getting it to run
+
+You'll need to have postgres installed on your machine. Use the sql file in backend folder with pg_dump to create the database. Set up appsettings so that the connectionstrings:default field has correct information. For frontend you want to install dependencies with npm install. With dotnet use dotnet restore. Frontend doesn't have ENV set up so the backend url needs to be set manually. (It should work if you're using the default host for dotnet application)
+
+### Project
+![img](./pics/project_page.png)
+### Task
+![img](./pics/task_page.png)
 ### Login
-![img](./pictures/login.png)
+![img](./pics/login.png)
