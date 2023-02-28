@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { getProjectById } from "../redux/reducers/projectReducer";
+import { completeProject, getProjectById } from "../redux/reducers/projectReducer";
 import { Task } from "../types/task";
 
 export function ProjectView() {
@@ -21,6 +22,10 @@ export function ProjectView() {
     let sortedTasks;
     if (!project[0].tasks.some(task => task.start_date === null)) {
         sortedTasks = project[0].tasks.map(task => task).sort((a,b) => new Date(a.start_date).getMilliseconds() - new Date(b.start_date).getMilliseconds());
+    }
+
+    function onComplete() {
+        dispatch(completeProject(parseInt(id as string)));
     }
 
     return (
@@ -44,6 +49,9 @@ export function ProjectView() {
                             <h4>Due date:</h4> 
                             <p>{new Date(project[0].due_date).toDateString()}</p>
                         </>}
+                    </div>
+                    <div>
+                        {project[0].completed ? "Project complete!" : project[0].tasks.every(task => task.completed) ? <Button class="btn complete-task" name="Complete" onClick={onComplete} /> : "There are still some tasks left to do"}
                     </div>
                 </div>
                 <div className="right-column">

@@ -1,14 +1,20 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { LoginRegisterForm } from "../components/LoginRegisterForm";
-import { useAppSelector } from "../hooks/reduxHook"
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
 import { useEffect } from "react";
-import { SideNav } from "../components/SideNav";
+import { getTasks } from "../redux/reducers/taskReducer";
+import { getProjects } from "../redux/reducers/projectReducer";
+import { getUsers } from "../redux/reducers/userReducer";
 
 export function Root() {
     const loggedIn = useAppSelector(state => state.login);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
+        dispatch(getTasks());
+        dispatch(getProjects());
+        dispatch(getUsers());
         if (loggedIn.user !== null) {
             navigate("/main");
         }
