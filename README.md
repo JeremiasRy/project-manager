@@ -17,8 +17,8 @@ When creating a project you assign a team for it and then individually assing a 
 
 ## Notes to myself
 
-I didn't use enough generics on the backend which made a lot of the code repetitive. <br/>
-Also my REST api knowledge wasn't on point when designing this so it doesn't fully commit on those guidelines
+I didn't use enough generics on the backend which made a lot of the code repetitive. Attribute validation should have also been used to clean up the controllers <br/>
+Also my REST api knowledge wasn't on point when designing this so it doesn't fully commit on those guidelines.
 
 ## Getting it to run
 
