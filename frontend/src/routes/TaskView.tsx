@@ -20,8 +20,6 @@ export function TaskView() {
         dispatch(completeTask(parseInt(id as string)));
     }
 
-    console.log(task);
-
     return(
         <div className="task-holder">
             <h1>{task[0].title}</h1>
